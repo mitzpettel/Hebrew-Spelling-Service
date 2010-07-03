@@ -28,7 +28,7 @@ int main(int argc, const char * argv[])
     NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
     NSSpellServer	*spellServer = [[NSSpellServer alloc] init];
     
-    if ( [spellServer registerLanguage:@"Hebrew" byVendor:@"hspell"] )
+    if ( [spellServer registerLanguage:@"Hebrew" byVendor:@"Hspell"] )
     {
         [spellServer setDelegate:[HSSpellChecker new]];
         [spellServer run];

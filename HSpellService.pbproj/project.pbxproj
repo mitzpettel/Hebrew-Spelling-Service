@@ -213,7 +213,7 @@
 		};
 		373BE08E05503FEA00000005 = {
 			isa = PBXFileReference;
-			path = HspellService.icns;
+			path = HSpellService.icns;
 			refType = 4;
 		};
 		373BE08F05503FEA00000005 = {
@@ -319,10 +319,10 @@
 	<key>CFBundleExecutable</key>
 	<string>Hebrew Spelling</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.0, Copyright 2003 Mitz Pettel.
+	<string>1.0.1, Copyright 2003 Mitz Pettel.
 Hspell 0.6, Copyright 2000-2003 Nadav Har'El and Dan Kenigsberg</string>
 	<key>CFBundleIconFile</key>
-	<string>HspellService.icns</string>
+	<string>HSpellService.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.mitzpettel.hspell</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -332,11 +332,11 @@ Hspell 0.6, Copyright 2000-2003 Nadav Har'El and Dan Kenigsberg</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0 (Hspell 0.6)</string>
+	<string>1.0.1 (Hspell 0.6)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.1</string>
 	<key>LSBackgroundOnly</key>
 	<true/>
 	<key>NSServices</key>
@@ -349,7 +349,7 @@ Hspell 0.6, Copyright 2000-2003 Nadav Har'El and Dan Kenigsberg</string>
 				<string>Hebrew</string>
 			</array>
 			<key>NSSpellChecker</key>
-			<string>hspell</string>
+			<string>Hspell</string>
 		</dict>
 	</array>
 </dict>
