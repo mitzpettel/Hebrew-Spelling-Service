@@ -3,6 +3,7 @@
 /* and on Tue Dec 23 2003.*/
 /* and on Fri Dec 2 2005.*/
 /* and on Mon May 15 2006.*/
+/* and by Nir Soffer on Sun Jul 16 2006.*/
 
 #import <Foundation/Foundation.h>
 #import "NSString-MPAdditions.h"
@@ -42,7 +43,10 @@ void initialize()
 
 NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCount, BOOL countOnly )
 {
-	NSRange range;
+    // Default value (no match) is {NSNotFound, 0}. This is the same
+    // value other range methods return in Cocoa. e.g. -rangeOfString
+    NSRange range = NSMakeRange(NSNotFound, 0);
+
 #define MAXWORD 30
 	char word[MAXWORD+1], *w;
 	int wordLength = 0, offset = 0, wordOffset = 0;
@@ -52,13 +56,11 @@ NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCo
 
 	int textLength = [stringToCheck length];
 	*wordCount = 0;
-	range.location = 0;
-	range.length = 0;
 
     initialize();
     
 	for( offset = 0; offset<=textLength; offset++ )
-        {
+    {
 		uc = ( offset==textLength ? 0 : [stringToCheck characterAtIndex:offset] );
                 
 		if(isUhebrew(uc) || uc=='\'' || uc=='"'){
@@ -105,22 +107,31 @@ NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCo
 			if(res){
 				if(hspell_debug)
 					fprintf(stderr,"correct: %s\n",w);
-			} else if (![spellServer isWordInUserDictionaries:[stringToCheck substringWithRange:NSMakeRange(wordOffset, wordLength)] caseSensitive:NO]) {
-				/* Mispelling in "spell" mode: remember this
-				   mispelling for later */
-                                range.location = wordOffset;
-                                range.length = wordLength;
-				if(hspell_debug)
-					fprintf(stderr,"mispelling: %s\n",w);
-                                break;
-			}
+			} else {
+                // Found a misspelled word - but the user may like to
+                // ignore it.
+                
+                NSRange misspelledRange = NSMakeRange(wordOffset, wordLength);
+                
+                NSString *misspelledWord = [stringToCheck substringWithRange:
+                    misspelledRange];
+                
+                if (![spellServer isWordInUserDictionaries:misspelledWord 
+                                             caseSensitive:NO]) {
+                    // Remember the rage
+                    range =  misspelledRange;
+                    
+                    if(hspell_debug)
+                        fprintf(stderr,"mispelling: %s\n",w);
+                    
+                    break;
+                }			
+            }
                     }
 			/* we're done with this word: */
 			(wordLength)=0;
 		}
-                
-
-		}
+    }
         
 	return range;
 }

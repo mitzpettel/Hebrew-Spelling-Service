@@ -31,31 +31,6 @@
 		37F3D4E106665EC700DB2A32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F3D4E006665EC700DB2A32 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		014CEA4F0018CE4811CA2923 /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		014CEA500018CE4811CA2923 /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-/* End PBXBuildStyle section */
-
 /* Begin PBXContainerItemProxy section */
 		3700A54E0666461F00998D4D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -213,18 +188,6 @@
 			buildConfigurationList = 37F3B32E093F22AD00850C09 /* Build configuration list for PBXLegacyTarget "Hspell" */;
 			buildPhases = (
 			);
-			buildSettings = {
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Untitled;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			buildToolPath = /usr/bin/gnumake;
 			buildWorkingDirectory = "hspell-1.0";
 			dependencies = (
@@ -247,27 +210,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-HSpellService.plist";
-				INSTALL_PATH = "$(HOME)/Library/Services";
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = (
-					"-DHAVE_ZLIB",
-					"-DDICTIONARY_BASE=\"\"",
-				);
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "Hebrew Spelling";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = service;
-			};
 			dependencies = (
 				3700A54F0666461F00998D4D /* PBXTargetDependency */,
 			);
@@ -283,14 +225,6 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 37F3B336093F22AD00850C09 /* Build configuration list for PBXProject "HSpellService" */;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
-			};
-			buildStyles = (
-				014CEA4F0018CE4811CA2923 /* Development */,
-				014CEA500018CE4811CA2923 /* Deployment */,
-			);
 			hasScannedForEncodings = 1;
 			mainGroup = 08FB7794FE84155DC02AAC07 /* hspell */;
 			projectDirPath = "";
@@ -415,8 +349,9 @@
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = (
 					"-DHAVE_ZLIB",
-					"-DDICTIONARY_BASE=\"\"",
+					"$(OTHER_CFLAGS_QUOTED_1)",
 				);
+				OTHER_CFLAGS_QUOTED_1 = "-DDICTIONARY_BASE=\\\"\\\"";
 				PRODUCT_NAME = "Hebrew Spelling";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -438,8 +373,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = (
 					"-DHAVE_ZLIB",
-					"-DDICTIONARY_BASE=\"\"",
+					"$(OTHER_CFLAGS_QUOTED_1)",
 				);
+				OTHER_CFLAGS_QUOTED_1 = "-DDICTIONARY_BASE=\\\"\\\"";
 				PRODUCT_NAME = "Hebrew Spelling";
 				STRIP_INSTALLED_PRODUCT = YES;
 				WARNING_CFLAGS = (
@@ -460,8 +396,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = (
 					"-DHAVE_ZLIB",
-					"-DDICTIONARY_BASE=\"\"",
+					"$(OTHER_CFLAGS_QUOTED_1)",
 				);
+				OTHER_CFLAGS_QUOTED_1 = "-DDICTIONARY_BASE=\\\"\\\"";
 				PRODUCT_NAME = "Hebrew Spelling";
 				WARNING_CFLAGS = (
 					"-Wmost",
