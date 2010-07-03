@@ -1,4 +1,4 @@
-You can use Project Builder or pbxbuild to build the Hebrew Spelling Service. The HSpellService target includes an Hspell subtarget that makes the necessary parts of Hspell.
+You can use Xcode or xcodebuild to build the Hebrew Spelling Service. The HSpellService target includes an Hspell subtarget that makes the necessary parts of Hspell.
 
 To install the service, put the Hebrew Spelling.service file in /Library/Services or ~/Library/Services
 
