@@ -1,0 +1,550 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 38;
+	objects = {
+		014CEA4F0018CE4811CA2923 = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				OPTIMIZATION_CFLAGS = "-O0";
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		014CEA500018CE4811CA2923 = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+//010
+//011
+//012
+//013
+//014
+//080
+//081
+//082
+//083
+//084
+		08FB7793FE84155DC02AAC07 = {
+			buildStyles = (
+				014CEA4F0018CE4811CA2923,
+				014CEA500018CE4811CA2923,
+			);
+			hasScannedForEncodings = 1;
+			isa = PBXProject;
+			mainGroup = 08FB7794FE84155DC02AAC07;
+			projectDirPath = "";
+			targets = (
+				37418E81054A7C7300000005,
+				377A14F9055173C400000005,
+			);
+		};
+		08FB7794FE84155DC02AAC07 = {
+			children = (
+				08FB7795FE84155DC02AAC07,
+				37CA479D054AD1E800000005,
+				08FB779DFE84155DC02AAC07,
+				1AB674ADFE9D54B511CA2CBB,
+			);
+			isa = PBXGroup;
+			name = hspell;
+			refType = 4;
+		};
+		08FB7795FE84155DC02AAC07 = {
+			children = (
+				08FB7796FE84155DC02AAC07,
+				37418E58054A795400000005,
+				37418E59054A795400000005,
+				37CA4799054ACB9B00000005,
+				37CA4797054ACB9200000005,
+				37CA46A9054A8B7300000005,
+				37CA4692054A8B7300000005,
+			);
+			isa = PBXGroup;
+			name = Source;
+			refType = 4;
+		};
+		08FB7796FE84155DC02AAC07 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = main.m;
+			refType = 4;
+		};
+		08FB779DFE84155DC02AAC07 = {
+			children = (
+				08FB779EFE84155DC02AAC07,
+			);
+			isa = PBXGroup;
+			name = Frameworks;
+			refType = 4;
+		};
+		08FB779EFE84155DC02AAC07 = {
+			isa = PBXFrameworkReference;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+		};
+//080
+//081
+//082
+//083
+//084
+//1A0
+//1A1
+//1A2
+//1A3
+//1A4
+		1AB674ADFE9D54B511CA2CBB = {
+			children = (
+				37418E82054A7C7300000005,
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+		};
+//1A0
+//1A1
+//1A2
+//1A3
+//1A4
+//370
+//371
+//372
+//373
+//374
+		3732B255054D87A700000005 = {
+			fileRef = 08FB7796FE84155DC02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B257054D87DB00000005 = {
+			fileRef = 37CA46A9054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B258054D87DC00000005 = {
+			fileRef = 37418E58054A795400000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B259054D87DC00000005 = {
+			fileRef = 37418E59054A795400000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B25A054D87DD00000005 = {
+			fileRef = 37CA4799054ACB9B00000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B25B054D87DE00000005 = {
+			fileRef = 37CA4797054ACB9200000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B25C054D87DE00000005 = {
+			fileRef = 37CA4694054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B25D054D87DF00000005 = {
+			fileRef = 37CA4695054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B25E054D87E000000005 = {
+			fileRef = 37CA4697054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B25F054D87E000000005 = {
+			fileRef = 37CA4698054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B260054D87E100000005 = {
+			fileRef = 37CA46A1054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B261054D87E100000005 = {
+			fileRef = 37CA46A2054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B262054D87E200000005 = {
+			fileRef = 37CA46A4054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B264054D87E200000005 = {
+			fileRef = 37CA46B1054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3732B265054D87E300000005 = {
+			fileRef = 37CA46B2054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		373BE08E05503FEA00000005 = {
+			isa = PBXFileReference;
+			path = HspellService.icns;
+			refType = 4;
+		};
+		373BE08F05503FEA00000005 = {
+			fileRef = 373BE08E05503FEA00000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37418E58054A795400000005 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = HSSpellChecker.h;
+			refType = 4;
+		};
+		37418E59054A795400000005 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = HSSpellChecker.m;
+			refType = 4;
+		};
+		37418E7C054A7C7300000005 = {
+			buildActionMask = 2147483647;
+			files = (
+				3732B258054D87DC00000005,
+				3732B25A054D87DD00000005,
+				3732B25D054D87DF00000005,
+				3732B25F054D87E000000005,
+				3732B261054D87E100000005,
+				3732B262054D87E200000005,
+				3732B265054D87E300000005,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37418E7D054A7C7300000005 = {
+			buildActionMask = 2147483647;
+			files = (
+				373BE08F05503FEA00000005,
+				377853A20551318200000005,
+				377853A30551318300000005,
+				377853A40551318300000005,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37418E7E054A7C7300000005 = {
+			buildActionMask = 2147483647;
+			files = (
+				3732B255054D87A700000005,
+				3732B257054D87DB00000005,
+				3732B259054D87DC00000005,
+				3732B25B054D87DE00000005,
+				3732B25C054D87DE00000005,
+				3732B25E054D87E000000005,
+				3732B260054D87E100000005,
+				3732B264054D87E200000005,
+				377853A50551318400000005,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37418E7F054A7C7300000005 = {
+			buildActionMask = 2147483647;
+			files = (
+				37A1BE53054D311C00000005,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37418E81054A7C7300000005 = {
+			buildPhases = (
+				37418E7C054A7C7300000005,
+				37418E7D054A7C7300000005,
+				37418E7E054A7C7300000005,
+				37418E7F054A7C7300000005,
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Library/Services";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "Hebrew Spelling";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = service;
+			};
+			dependencies = (
+				374B6A0E055176E000000005,
+			);
+			isa = PBXApplicationTarget;
+			name = HSpellService;
+			productInstallPath = "$(HOME)/Library/Services";
+			productName = HSpell;
+			productReference = 37418E82054A7C7300000005;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Hebrew Spelling</string>
+	<key>CFBundleGetInfoString</key>
+	<string>1.0, Copyright 2003 Mitz Pettel.
+Hspell 0.6, Copyright 2000-2003 Nadav Har'El and Dan Kenigsberg</string>
+	<key>CFBundleIconFile</key>
+	<string>HspellService.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.mitzpettel.hspell</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Hebrew Spelling</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0 (Hspell 0.6)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>LSBackgroundOnly</key>
+	<true/>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSExecutable</key>
+			<string>Hebrew Spelling</string>
+			<key>NSLanguages</key>
+			<array>
+				<string>Hebrew</string>
+			</array>
+			<key>NSSpellChecker</key>
+			<string>hspell</string>
+		</dict>
+	</array>
+</dict>
+</plist>
+";
+		};
+		37418E82054A7C7300000005 = {
+			isa = PBXApplicationReference;
+			path = "Hebrew Spelling.service";
+			refType = 3;
+		};
+		374B6A0E055176E000000005 = {
+			isa = PBXTargetDependency;
+			target = 377A14F9055173C400000005;
+		};
+		377853A20551318200000005 = {
+			fileRef = 37CA479E054AD21D00000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		377853A30551318300000005 = {
+			fileRef = 37CA479F054AD21D00000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		377853A40551318300000005 = {
+			fileRef = 37CA47A0054AD21D00000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		377853A50551318400000005 = {
+			fileRef = 37CA46AE054A8B7300000005;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		377A14F9055173C400000005 = {
+			buildArgumentsString = $ACTION;
+			buildPhases = (
+			);
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Untitled;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+			};
+			buildToolPath = /usr/bin/gnumake;
+			buildWorkingDirectory = "hspell-0.6/c";
+			dependencies = (
+			);
+			isa = PBXLegacyTarget;
+			name = Hspell;
+			passBuildSettingsInEnvironment = 1;
+			productName = Untitled;
+			settingsToExpand = 6;
+			settingsToPassInEnvironment = 287;
+			settingsToPassOnCommandLine = 280;
+		};
+		37A1BE53054D311C00000005 = {
+			fileRef = 08FB779EFE84155DC02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		37CA4692054A8B7300000005 = {
+			children = (
+				37CA4694054A8B7300000005,
+				37CA4695054A8B7300000005,
+				37CA4697054A8B7300000005,
+				37CA4698054A8B7300000005,
+				37CA46A1054A8B7300000005,
+				37CA46A2054A8B7300000005,
+				37CA46A4054A8B7300000005,
+				37CA46AE054A8B7300000005,
+				37CA46B1054A8B7300000005,
+				37CA46B2054A8B7300000005,
+			);
+			isa = PBXGroup;
+			name = hspell;
+			path = "hspell-0.6/c";
+			refType = 4;
+		};
+		37CA4694054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = corlist.c;
+			refType = 4;
+		};
+		37CA4695054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = corlist.h;
+			refType = 4;
+		};
+		37CA4697054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = dict_radix.c;
+			refType = 4;
+		};
+		37CA4698054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = dict_radix.h;
+			refType = 4;
+		};
+		37CA46A1054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = gimatria.c;
+			refType = 4;
+		};
+		37CA46A2054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = gimatria.h;
+			refType = 4;
+		};
+		37CA46A4054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = hash.h;
+			refType = 4;
+		};
+		37CA46A9054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = hspell.m;
+			refType = 4;
+		};
+		37CA46AE054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = prefixes.c;
+			refType = 4;
+		};
+		37CA46B1054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = tclHash.c;
+			refType = 4;
+		};
+		37CA46B2054A8B7300000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = tclHash.h;
+			refType = 4;
+		};
+		37CA4797054ACB9200000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = "NSString-MPAdditions.m";
+			refType = 4;
+		};
+		37CA4799054ACB9B00000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = "NSString-MPAdditions.h";
+			refType = 4;
+		};
+		37CA479D054AD1E800000005 = {
+			children = (
+				373BE08E05503FEA00000005,
+				37CA479E054AD21D00000005,
+				37CA479F054AD21D00000005,
+				37CA47A0054AD21D00000005,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			refType = 4;
+		};
+		37CA479E054AD21D00000005 = {
+			isa = PBXFileReference;
+			name = hebrew.wgz;
+			path = "hspell-0.6/c/hebrew.wgz";
+			refType = 4;
+		};
+		37CA479F054AD21D00000005 = {
+			isa = PBXFileReference;
+			name = hebrew.wgz.prefixes;
+			path = "hspell-0.6/c/hebrew.wgz.prefixes";
+			refType = 4;
+		};
+		37CA47A0054AD21D00000005 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = hebrew.wgz.sizes;
+			path = "hspell-0.6/c/hebrew.wgz.sizes";
+			refType = 4;
+		};
+	};
+	rootObject = 08FB7793FE84155DC02AAC07;
+}

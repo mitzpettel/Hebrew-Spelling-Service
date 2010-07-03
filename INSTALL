@@ -1,0 +1,7 @@
+You can use Project Builder or pbxbuild to build the Hebrew Spelling Service. The HSpellService target includes an Hspell subtarget that makes the necessary parts of Hspell.
+
+To install the service, put the Hebrew Spelling.service file in /Library/Services or ~/Library/Services
+
+You need to log out and re-log in in order to make the service available.
+
+To remove the service, take it out of the Services folder where you installed it. After you log out, the service will no longer be available.
