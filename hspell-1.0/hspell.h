@@ -1,5 +1,5 @@
-/* Copyright (C) 2003-2004 Nadav Har'El and Dan Kenigsberg */
-/* Modified for HSpellService by Mitz Pettel on Fri Dec 2 2005.*/
+/* Copyright (C) 2003-2006 Nadav Har'El and Dan Kenigsberg */
+/* Modified for HSpellService by Mitz Pettel on Wed Apr 19 2006.*/
 
 /* This header file defines the Hspell Hebrew spellchecking API in C, as
    implemented by the libhspell.a library.
@@ -10,12 +10,10 @@
 #define INCLUDED_HSPELL_H
 
 /* The following macros can be used to verify which version of the Hspell
-   API this header file supports. Note that before the final 1.0 release
-   of Hspell, this API is likely to change, perhaps even quite drasticaly,
-   between minor versions.
+   API this header file supports. Note that this API might change.
 */
-#define HSPELL_VERSION_MAJOR 0
-#define HSPELL_VERSION_MINOR 9
+#define HSPELL_VERSION_MAJOR 1
+#define HSPELL_VERSION_MINOR 0
 #define HSPELL_VERSION_EXTRA ""
 
 

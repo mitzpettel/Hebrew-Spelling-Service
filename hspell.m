@@ -2,6 +2,7 @@
 /* Modified for HSpellService by Mitz Pettel on Fri Mar 15 2003.*/
 /* and on Tue Dec 23 2003.*/
 /* and on Fri Dec 2 2005.*/
+/* and on Mon May 15 2006.*/
 
 #import <Foundation/Foundation.h>
 #import "NSString-MPAdditions.h"
@@ -25,7 +26,8 @@ const char *dictionary_base;
 #define VERSION_IDENTIFICATION ("@(#) International Ispell Version 3.1.20 " \
 			       "(but really Hspell/C %d.%d%s)\n")
 
-#define isUhebrew(c) ((c)>=0x05d0 && (c)<=0x05ea)
+// Hebrew letters, cantillation marks and points
+#define isUhebrew(c) (((c)>=0x05d0 && (c)<=0x05ea) || ((c)>=0x0591 && (c)<=0x05c2 && (c)!=0x05ba && (c)!=0x05be && (c)!=0x05c0))
 
 static struct dict_radix *dict = NULL;
 
@@ -126,7 +128,7 @@ NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCo
 /* try to find corrections for word */
 NSArray *trycorrect( NSString *word )
 {
-	const char		*w = [word cStringWithEncoding:kCFStringEncodingISOLatinHebrew];
+	const char		*w = [word cStringWithEncoding:kCFStringEncodingWindowsHebrew];
 	NSMutableArray	*result;
 	struct corlist  cl;
 	int i;
@@ -139,19 +141,19 @@ NSArray *trycorrect( NSString *word )
 	
 	result = [NSMutableArray arrayWithCapacity:cl.n];
 	for ( i = 0; i<cl.n; i++ )
-		[result addObject:[NSString stringWithCString:cl.correction[i] encoding:kCFStringEncodingISOLatinHebrew]];
+		[result addObject:[NSString stringWithCString:cl.correction[i] encoding:kCFStringEncodingWindowsHebrew]];
     corlist_free(&cl);
 	return result;
 }
 
 void foundCompletion(const char *completion, void *context)
 {
-    [(NSMutableArray *)context addObject:[NSString stringWithCString:completion encoding:kCFStringEncodingISOLatinHebrew]];
+    [(NSMutableArray *)context addObject:[NSString stringWithCString:completion encoding:kCFStringEncodingWindowsHebrew]];
 }
 
 NSArray *completions(NSString *word)
 {
-	const char		*w = [word cStringWithEncoding:kCFStringEncodingISOLatinHebrew];
+	const char		*w = [word cStringWithEncoding:kCFStringEncodingWindowsHebrew];
 	NSMutableArray	*result = [NSMutableArray arrayWithCapacity:MAX_COMPLETIONS];
 	
     initialize();

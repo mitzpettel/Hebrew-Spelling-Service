@@ -31,17 +31,6 @@
 		37F3D4E106665EC700DB2A32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F3D4E006665EC700DB2A32 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-		37AA8ED809407B5D002BF83C /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.c;
-			isEditable = 1;
-			outputFiles = (
-			);
-		};
-/* End PBXBuildRule section */
-
 /* Begin PBXBuildStyle section */
 		014CEA4F0018CE4811CA2923 /* Development */ = {
 			isa = PBXBuildStyle;
@@ -81,7 +70,7 @@
 		08FB7796FE84155DC02AAC07 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		3700A54A0666461F00998D4D /* Info-HSpellService.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Info-HSpellService.plist"; sourceTree = "<group>"; };
-		3700A54B0666461F00998D4D /* Hebrew Spelling.service */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = "Hebrew Spelling.service"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3700A54B0666461F00998D4D /* Hebrew Spelling.service */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hebrew Spelling.service"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37204BBA05983FA800722698 /* libhspell.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = libhspell.c; sourceTree = "<group>"; };
 		37204BD60598411600722698 /* hspell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = hspell.h; sourceTree = "<group>"; };
 		373BE08E05503FEA00000005 /* HSpellService.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = HSpellService.icns; sourceTree = "<group>"; };
@@ -169,7 +158,7 @@
 				37CA47A0054AD21D00000005 /* hebrew.wgz.sizes */,
 			);
 			name = hspell;
-			path = "hspell-0.9";
+			path = "hspell-1.0";
 			sourceTree = "<group>";
 		};
 		37CA4692054A8B7300000005 /* hspell */ = {
@@ -187,7 +176,7 @@
 				37CA46B2054A8B7300000005 /* tclHash.h */,
 			);
 			name = hspell;
-			path = "hspell-0.9";
+			path = "hspell-1.0";
 			sourceTree = "<group>";
 		};
 		37CA479D054AD1E800000005 /* Resources */ = {
@@ -237,7 +226,7 @@
 				);
 			};
 			buildToolPath = /usr/bin/gnumake;
-			buildWorkingDirectory = "hspell-0.9";
+			buildWorkingDirectory = "hspell-1.0";
 			dependencies = (
 			);
 			name = Hspell;
@@ -257,7 +246,6 @@
 				3700A5470666461F00998D4D /* Frameworks */,
 			);
 			buildRules = (
-				37AA8ED809407B5D002BF83C /* PBXBuildRule */,
 			);
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -487,24 +475,28 @@
 		37F3B337093F22AD00850C09 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
 		37F3B338093F22AD00850C09 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
 		};
 		37F3B339093F22AD00850C09 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Default;
 		};
