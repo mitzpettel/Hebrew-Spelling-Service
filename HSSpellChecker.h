@@ -27,6 +27,7 @@
 
 #define HSLogSettingName		@"HSLog"
 #define HSSuicideSettingName	@"exitOnWrongLanguage"
+#define HSUseGereshAndGershayimSettingName @"useGereshAndGershayim"
 
 @interface HSSpellChecker : NSObject {
 

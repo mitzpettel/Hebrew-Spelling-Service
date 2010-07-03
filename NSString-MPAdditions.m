@@ -29,34 +29,11 @@
 
 @implementation NSString (NSStringMPAdditions)
 
-- (NSString *)stringByReplacing:(NSString *)searchString with:(NSString *)replacement
-{
-    return [self stringByReplacing:searchString with:replacement options:0];
-}
-
-- (NSString *)stringByReplacing:(NSString *)searchString with:(NSString *)replacement options:(unsigned)mask
-{
-    NSMutableString *result = [self mutableCopy];
-    NSRange searchRange = NSMakeRange(0, [self length]);
-    NSRange matchRange;
-    
-    while (searchRange.length)
-    {
-        matchRange = [result rangeOfString:searchString options:mask range:searchRange];
-        if (matchRange.location==NSNotFound)
-            break;
-        [result replaceCharactersInRange:matchRange withString:replacement];
-        searchRange.location = matchRange.location+[replacement length];
-        searchRange.length = [result length]-searchRange.location;
-    }
-    return [result autorelease];
-}
-
-+ (NSString *)stringWithCString:(const char *)bytes encoding:(NSStringEncoding)encoding
++ (NSString *)stringWithCString:(const char *)bytes CFStringEncoding:(CFStringEncoding)encoding
 {
     if (bytes==nil)
         return nil;
-    return [(NSString *)CFStringCreateWithCString(nil, bytes, encoding) autorelease];
+    return [(NSString *)CFStringCreateWithCString(kCFAllocatorDefault, bytes, encoding) autorelease];
 }
 
 - (const char *)cStringWithEncoding:(NSStringEncoding)encoding
@@ -75,24 +52,17 @@
     return bytes;
 }
 
-- (NSComparisonResult)displayNameCompare:(NSString *)string
+- (NSString *)stringByReplacingStraightQuotesWithGershayim
 {
-    NSFileManager *manager = [NSFileManager defaultManager];
-    return [[manager displayNameAtPath:self] caseInsensitiveCompare:[manager displayNameAtPath:string]];
-}
+    static NSCharacterSet *straightQuotes = nil;
+    if (!straightQuotes)
+        straightQuotes = [[NSCharacterSet characterSetWithCharactersInString:@"\"'"] retain];
 
-+ (NSString *)stringWithByteSize:(unsigned int)size
-{
-    return ( size==0 ?
-        @""
-        : ( size<1024 ?
-            [NSString stringWithFormat:NSLocalizedString( @"%d bytes", @"" ), size]
-            : ( size<1024*1024 ? 
-                [NSString stringWithFormat:NSLocalizedString( @"%d KB", @"" ), size/1024]
-                : [NSString stringWithFormat:NSLocalizedString( @"%d MB", @"" ), size/1024/1024]
-            )
-        )
-    );
+    if (![self rangeOfCharacterFromSet:straightQuotes].length)
+        return self;
+
+    NSString *result = [self stringByReplacingOccurrencesOfString:@"'" withString:@"׳"];
+    return [result stringByReplacingOccurrencesOfString:@"\"" withString:@"״"];
 }
 
 @end

@@ -3,7 +3,7 @@
  *  HSPellService
  *
  *  Created by Mitz Pettel on Fri Oct 25 2003.
- *  Copyright (c) 2003 Mitz Pettel <source@mitzpettel.com>. All rights reserved.
+ *  Copyright (c) 2003, 2010 Mitz Pettel <source@mitzpettel.com>. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  */
-#import <Foundation/Foundation.h>
 #import "HSSpellChecker.h"
 
 int main(int argc, const char * argv[])
@@ -31,8 +30,9 @@ int main(int argc, const char * argv[])
 	[[NSUserDefaults standardUserDefaults]
 		registerDefaults:[NSDictionary
 			dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithBool:YES],  HSSuicideSettingName,
+				[NSNumber numberWithBool:NSFoundationVersionNumber <= NSFoundationVersionNumber10_5_6],  HSSuicideSettingName,
 				[NSNumber numberWithBool:NO],  HSLogSettingName,
+                [NSNumber numberWithBool:NO],  HSUseGereshAndGershayimSettingName,
 				nil
 		]
 	];
@@ -43,7 +43,8 @@ int main(int argc, const char * argv[])
 		
 		if ( [[NSUserDefaults standardUserDefaults] boolForKey:HSLogSettingName] )
 			NSLog( @"Starting spell server" );
-			
+        if ([[NSProcessInfo processInfo] respondsToSelector:@selector(enableSuddenTermination)])
+            [[NSProcessInfo processInfo] enableSuddenTermination];
         [spellServer run];
 		
         NSLog( @"Terminated unexpectedly" );

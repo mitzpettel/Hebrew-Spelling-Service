@@ -63,11 +63,11 @@ NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCo
     {
 		uc = ( offset==textLength ? 0 : [stringToCheck characterAtIndex:offset] );
                 
-		if(isUhebrew(uc) || uc=='\'' || uc=='"'){
+		if(isUhebrew(uc) || uc=='\'' || uc=='"' || uc==0x05f3 || uc==0x05f4){
 			/* swallow up another letter into the word (if the word
 			 * is too long, lose the last letters) */
 			if((wordLength)<MAXWORD)
-				word[(wordLength)++]=( uc<0x05d0 ? uc : uc-0x04f0 );
+				word[(wordLength)++]=( uc<0x05d0 ? uc : uc==0x05f3 ? '\'' : uc==0x05f4 ? '"' : uc-0x04f0 );
 		} else if(wordLength){
                         (*wordCount)++;
 			/* found word seperator, after a non-empty word */
@@ -137,7 +137,7 @@ NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCo
 }
 
 /* try to find corrections for word */
-NSArray *trycorrect( NSString *word )
+NSArray *trycorrect( NSString *word, BOOL useGereshAndGershayim )
 {
 	const char		*w = [word cStringWithEncoding:kCFStringEncodingWindowsHebrew];
 	NSMutableArray	*result;
@@ -151,18 +151,23 @@ NSArray *trycorrect( NSString *word )
 	hspell_trycorrect( dict, w, &cl );
 	
 	result = [NSMutableArray arrayWithCapacity:cl.n];
-	for ( i = 0; i<cl.n; i++ )
-		[result addObject:[NSString stringWithCString:cl.correction[i] encoding:kCFStringEncodingWindowsHebrew]];
+	for ( i = 0; i<cl.n; i++ ) {
+		NSString *correction = [NSString stringWithCString:cl.correction[i] CFStringEncoding:kCFStringEncodingWindowsHebrew];
+        if (useGereshAndGershayim)
+            correction = [correction stringByReplacingStraightQuotesWithGershayim];
+
+		[result addObject:correction];
+    }
     corlist_free(&cl);
 	return result;
 }
 
 void foundCompletion(const char *completion, void *context)
 {
-    [(NSMutableArray *)context addObject:[NSString stringWithCString:completion encoding:kCFStringEncodingWindowsHebrew]];
+    [(NSMutableArray *)context addObject:[NSString stringWithCString:completion CFStringEncoding:kCFStringEncodingWindowsHebrew]];
 }
 
-NSArray *completions(NSString *word)
+NSArray *completions(NSString *word, BOOL useGereshAndGershayim)
 {
 	const char		*w = [word cStringWithEncoding:kCFStringEncodingWindowsHebrew];
 	NSMutableArray	*result = [NSMutableArray arrayWithCapacity:MAX_COMPLETIONS];
@@ -170,6 +175,13 @@ NSArray *completions(NSString *word)
     initialize();
 
 	hspell_completions(dict, w, MAX_COMPLETIONS, foundCompletion, result);
+
+    if (useGereshAndGershayim) {
+        int count = [result count];
+        int i;
+        for (i = 0; i < count; i++)
+            [result replaceObjectAtIndex:i withObject:[[result objectAtIndex:i] stringByReplacingStraightQuotesWithGershayim]];
+    }
 	
     return [result sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }

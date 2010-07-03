@@ -1,11 +1,11 @@
-/* Copyright (C) 2003-2004 Nadav Har'El and Dan Kenigsberg */
+/* Copyright (C) 2003-2009 Nadav Har'El and Dan Kenigsberg */
 /* Modified for HSpellService by Mitz Pettel on Fri Dec 2 2005.*/
 
+#include "dict_radix.h"
 #include <stdio.h>
 #include <sys/types.h>
 #include <stdlib.h>
 #include <string.h>
-#include "dict_radix.h"
 
 /* This is for declaring the uint32_t type, a type holding a 32-bit unsigned
    integer. It exists on Linux and on fairly modern Solaris, but
@@ -362,13 +362,13 @@ read_dict(struct dict_radix *dict, const char *dir)
 #ifdef PREFIX_FILE
 #ifdef HAVE_ZLIB
 		snprintf(s,sizeof(s),"%s.prefixes",dir);
-		if(!(prefixes=gzopen(s,"r"))){
+		if(!(prefixes=gzopen(s,"rb"))){
 			fprintf(stderr,"Hspell: can't open %s.\n",s);
 			return 0;
 		}
 #else
 		snprintf(s,sizeof(s),"gzip -dc '%s.prefixes'",dir);
-		if(!(prefixes=popen(s,"r"))){
+		if(!(prefixes=popen(s,"rb"))){
 			fprintf(stderr,"Hspell: can't run %s.\n",s);
 			return 0;
 		}
@@ -610,7 +610,7 @@ print_stats(struct dict_radix *dict)
 	fprintf(stderr, "%d nfree_nodes_small %d nfree_nodes_medium.\n",
 		dict->nfree_nodes_small,dict->nfree_nodes_medium);
 	fprintf(stderr, "node memory filled: %d K\n",
-	       (dict->nnodes*sizeof(struct node)
+	       (int)(dict->nnodes*sizeof(struct node)
 		+ dict->nnodes_small*sizeof(struct node_small)
 		+ dict->nnodes_medium*sizeof(struct node_medium)
 		       )/1024);

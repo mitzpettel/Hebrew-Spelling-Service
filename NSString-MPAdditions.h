@@ -26,10 +26,8 @@
 
 @interface NSString (NSStringMPAdditions)
 
-- (NSString *)stringByReplacing:(NSString *)searchString with:(NSString *)replacement;
-- (NSString *)stringByReplacing:(NSString *)searchString with:(NSString *)replacement options:(unsigned)mask;
-+ (NSString *)stringWithCString:(const char *)bytes encoding:(NSStringEncoding)encoding;
++ (NSString *)stringWithCString:(const char *)bytes CFStringEncoding:(CFStringEncoding)encoding;
 - (const char *)cStringWithEncoding:(NSStringEncoding)encoding;
-- (NSComparisonResult)displayNameCompare:(NSString *)string;
+- (NSString *)stringByReplacingStraightQuotesWithGershayim;
 
 @end

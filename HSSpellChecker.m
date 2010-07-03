@@ -23,8 +23,8 @@
 #import "HSSpellChecker.h"
 
 NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCount, BOOL countOnly );
-NSArray *trycorrect( NSString *word );
-NSArray *completions(NSString *word);
+NSArray *trycorrect( NSString *word, BOOL useGereshAndGershayim );
+NSArray *completions(NSString *word, BOOL useGereshAndGershayim);
 
 @implementation HSSpellChecker
 
@@ -44,12 +44,12 @@ NSArray *completions(NSString *word);
 
 - (NSArray *)spellServer:(NSSpellServer *)sender suggestGuessesForWord:(NSString *)word inLanguage:(NSString *)language
 {
-    return trycorrect(word);
+    return trycorrect(word, [[NSUserDefaults standardUserDefaults] boolForKey:HSUseGereshAndGershayimSettingName]);
 }
 
 - (NSArray *)spellServer:(NSSpellServer *)sender suggestCompletionsForPartialWordRange:(NSRange)range inString:(NSString *)string language:(NSString *)language
 {
-    return completions([string substringWithRange:range]);
+    return completions([string substringWithRange:range], [[NSUserDefaults standardUserDefaults] boolForKey:HSUseGereshAndGershayimSettingName]);
 }
 
 @end

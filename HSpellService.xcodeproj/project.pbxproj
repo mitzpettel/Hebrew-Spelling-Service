@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -44,7 +44,7 @@
 /* Begin PBXFileReference section */
 		08FB7796FE84155DC02AAC07 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		3700A54A0666461F00998D4D /* Info-HSpellService.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Info-HSpellService.plist"; sourceTree = "<group>"; };
+		3700A54A0666461F00998D4D /* Info-HSpellService.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-HSpellService.plist"; sourceTree = "<group>"; };
 		3700A54B0666461F00998D4D /* Hebrew Spelling.service */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hebrew Spelling.service"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37204BBA05983FA800722698 /* libhspell.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = libhspell.c; sourceTree = "<group>"; };
 		37204BD60598411600722698 /* hspell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = hspell.h; sourceTree = "<group>"; };
@@ -56,11 +56,11 @@
 		37CA4698054A8B7300000005 /* dict_radix.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = dict_radix.h; sourceTree = "<group>"; };
 		37CA46A1054A8B7300000005 /* gimatria.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = gimatria.c; sourceTree = "<group>"; };
 		37CA46A4054A8B7300000005 /* hash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = hash.h; sourceTree = "<group>"; };
-		37CA46A9054A8B7300000005 /* hspell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = hspell.m; sourceTree = "<group>"; };
+		37CA46A9054A8B7300000005 /* hspell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hspell.m; sourceTree = "<group>"; };
 		37CA46AE054A8B7300000005 /* prefixes.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = prefixes.c; sourceTree = "<group>"; };
 		37CA46B1054A8B7300000005 /* tclHash.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = tclHash.c; sourceTree = "<group>"; };
 		37CA46B2054A8B7300000005 /* tclHash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = tclHash.h; sourceTree = "<group>"; };
-		37CA4797054ACB9200000005 /* NSString-MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSString-MPAdditions.m"; sourceTree = "<group>"; };
+		37CA4797054ACB9200000005 /* NSString-MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-MPAdditions.m"; sourceTree = "<group>"; };
 		37CA4799054ACB9B00000005 /* NSString-MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "NSString-MPAdditions.h"; sourceTree = "<group>"; };
 		37CA479E054AD21D00000005 /* hebrew.wgz */ = {isa = PBXFileReference; explicitFileType = file; path = hebrew.wgz; sourceTree = "<group>"; };
 		37CA479F054AD21D00000005 /* hebrew.wgz.prefixes */ = {isa = PBXFileReference; lastKnownFileType = file; path = hebrew.wgz.prefixes; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 				37CA4799054ACB9B00000005 /* NSString-MPAdditions.h */,
 				37CA4797054ACB9200000005 /* NSString-MPAdditions.m */,
 				37CA46A9054A8B7300000005 /* hspell.m */,
-				37CA4692054A8B7300000005 /* hspell */,
+				37CA4692054A8B7300000005 /* hspell-1.1 */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -125,18 +125,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3700A5540666537A00998D4D /* hspell */ = {
+		3700A5540666537A00998D4D /* hspell-1.1 */ = {
 			isa = PBXGroup;
 			children = (
 				37CA479E054AD21D00000005 /* hebrew.wgz */,
 				37CA479F054AD21D00000005 /* hebrew.wgz.prefixes */,
 				37CA47A0054AD21D00000005 /* hebrew.wgz.sizes */,
 			);
-			name = hspell;
-			path = "hspell-1.0";
+			path = "hspell-1.1";
 			sourceTree = "<group>";
 		};
-		37CA4692054A8B7300000005 /* hspell */ = {
+		37CA4692054A8B7300000005 /* hspell-1.1 */ = {
 			isa = PBXGroup;
 			children = (
 				37204BD60598411600722698 /* hspell.h */,
@@ -150,15 +149,14 @@
 				37CA46B1054A8B7300000005 /* tclHash.c */,
 				37CA46B2054A8B7300000005 /* tclHash.h */,
 			);
-			name = hspell;
-			path = "hspell-1.0";
+			path = "hspell-1.1";
 			sourceTree = "<group>";
 		};
 		37CA479D054AD1E800000005 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				373BE08E05503FEA00000005 /* HSpellService.icns */,
-				3700A5540666537A00998D4D /* hspell */,
+				3700A5540666537A00998D4D /* hspell-1.1 */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -189,7 +187,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/gnumake;
-			buildWorkingDirectory = "hspell-1.0";
+			buildWorkingDirectory = "hspell-1.1";
 			dependencies = (
 			);
 			name = Hspell;
@@ -225,9 +223,11 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 37F3B336093F22AD00850C09 /* Build configuration list for PBXProject "HSpellService" */;
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			mainGroup = 08FB7794FE84155DC02AAC07 /* hspell */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				3700A52E0666461F00998D4D /* HSpellService */,
 				3700A54D0666461F00998D4D /* Hspell */,
@@ -286,7 +286,6 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -345,8 +344,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "Info-HSpellService.plist";
 				INSTALL_PATH = "$(DSTROOT)/Library/Services";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = (
 					"-DHAVE_ZLIB",
 					"$(OTHER_CFLAGS_QUOTED_1)",
@@ -370,7 +367,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				INFOPLIST_FILE = "Info-HSpellService.plist";
 				INSTALL_PATH = "$(DSTROOT)/Library/Services";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = (
 					"-DHAVE_ZLIB",
 					"$(OTHER_CFLAGS_QUOTED_1)",
@@ -384,7 +380,6 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = service;
-				ZERO_LINK = NO;
 			};
 			name = Deployment;
 		};
@@ -393,7 +388,6 @@
 			buildSettings = {
 				INFOPLIST_FILE = "Info-HSpellService.plist";
 				INSTALL_PATH = "$(DSTROOT)/Library/Services";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = (
 					"-DHAVE_ZLIB",
 					"$(OTHER_CFLAGS_QUOTED_1)",
@@ -413,19 +407,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
 		37F3B338093F22AD00850C09 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
 		};
@@ -433,7 +422,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Default;
 		};

@@ -1,4 +1,4 @@
-/* Copyright (C) 2003-2006 Nadav Har'El and Dan Kenigsberg */
+/* Copyright (C) 2003-2009 Nadav Har'El and Dan Kenigsberg */
 /* Modified for HSpellService by Mitz Pettel on Wed Apr 19 2006.*/
 
 /* This header file defines the Hspell Hebrew spellchecking API in C, as
@@ -13,7 +13,7 @@
    API this header file supports. Note that this API might change.
 */
 #define HSPELL_VERSION_MAJOR 1
-#define HSPELL_VERSION_MINOR 0
+#define HSPELL_VERSION_MINOR 1
 #define HSPELL_VERSION_EXTRA ""
 
 
@@ -23,7 +23,8 @@ struct corlist;
 /* flags for hspell_init: */
 #define HSPELL_OPT_DEFAULT 0
 #define HSPELL_OPT_HE_SHEELA 1      /* flag to accept He Ha-she'ela */
-#define HSPELL_OPT_LINGUISTICS  2   /* initialize morphological analyzer, not just spell-checker */
+#define HSPELL_OPT_LINGUISTICS  2   /* initialize morphological analyzer,
+				       not just spell-checker */
 
 typedef void (*hspell_completions_callback)(const char *completion, void *context);
 
