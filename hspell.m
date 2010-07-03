@@ -45,6 +45,7 @@ NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCo
 	if ( dict==NULL )
 	{
 		dictionary_base = [[NSFileManager defaultManager] fileSystemRepresentationWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"hebrew.wgz"]];
+		hspell_set_dictionary_path( dictionary_base );
 		hspell_init( &dict, 0 );
 	}
 

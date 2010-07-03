@@ -71,13 +71,18 @@ clean:
 	      hspell.o tclHash.o hebrew.wgz hebrew.wgz.sizes \
 	      hebrew.wgz.prefixes dout.nouns.shemp.gz shemp.dat \
 	      dout.nouns.wolig.gz dout.verbs.gz hspell find_sizes \
-	      prefixes.c libhspell.o libhspell.a \
+	      prefixes.c libhspell.o libhspell.a hspell.exe \
 	      hebrew.wgz.desc hebrew.wgz.stems he_affix.dat \
-	      he.cwl mk_he_affix linginfo.o mk_he_affix.o \
-	      hebrew.wgz.lingsizes.tmp
+	      he.wl mk_he_affix linginfo.o mk_he_affix.o \
+	      hebrew.wgz.lingsizes.tmp dmask.c install.js \
+	      spell-he-IL.xpi he-IL.dic he-IL.aff README-he-IL.txt \
+	      README_he_IL.txt he_IL.dic he_IL.aff he_IL.zip
 
 distclean: clean
 	rm -f Makefile config.log config.status
+
+# On Windows, this would typically be set to hspell.exe
+HSPELL_EXECUTABLE=hspell
 
 install: all
 
@@ -85,7 +90,7 @@ install: all
 ################################################
 # for creating an hspell distribution tar
 PACKAGE = hspell
-VERSION = 0.8
+VERSION = 0.9
 DISTFILES = COPYING INSTALL LICENSE README WHATSNEW TODO \
 	Makefile.in stats wunzip.c wzip \
 	hspell.1 \
@@ -99,7 +104,8 @@ DISTFILES = COPYING INSTALL LICENSE README WHATSNEW TODO \
 	pmerge PrefixBits.pl genprefixes.pl \
 	hash.h tclHash.c tclHash.h \
         binarize-desc.pl pack-desc.pl linginfo.c linginfo.h \
-	multispell hspell.3 mk_he_affix.c configure.in configure
+	multispell hspell.3 mk_he_affix.c configure.in configure \
+	install.js.pre
 
 DISTDIR = $(PACKAGE)-$(VERSION)
 
@@ -124,30 +130,26 @@ dist: distdir
 	rm -rf ./$(DISTDIR)
 
 ############################################################################
-############################################################################
-# moved from c/Makefile:
-
-#normal: hebrew.wgz.sizes hspell
 
 libhspell.a: dict_radix.o gimatria.o corlist.o libhspell.o $(EXTRAOBJECTS)
 	-rm -f $@
 	ar cr $@ $^
 	-ranlib $@
 
-hspell: hspell.o tclHash.o libhspell.a
-	$(CC) $(CFLAGS) $(LDFLAGS) -o hspell hspell.o tclHash.o libhspell.a $(LIBS)
+$(HSPELL_EXECUTABLE): hspell.o tclHash.o libhspell.a
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(HSPELL_EXECUTABLE) hspell.o tclHash.o libhspell.a $(LIBS)
 
 # remember to update this dependency list once in a while...
 libhspell.o dict_radix.o find_sizes.o: dict_radix.h
 dict_radix.o linginfo.o: gzbuffered.h
-libhspell.o: prefixes.c
+libhspell.o mk_he_affix.o: prefixes.c
 hspell.o: hash.h tclHash.h
 tclHash.o: tclHash.h
 corlist.o gimatria.o hspell.o libhspell.o: hspell.h
 hspell.o libhspell.o linginfo.o: linginfo.h hspell.h
 linginfo.o: dmask.c
 
-prefixes.c: genprefixes.pl
+prefixes.c: genprefixes.pl PrefixBits.pl
 	$(PERL) -w ./genprefixes.pl >prefixes.c
 
 find_sizes: find_sizes.o dict_radix.o
@@ -162,7 +164,7 @@ DICTS=milot extrawords biza-verbs biza-nouns
 # hebrew.wgz.prefixes is the prefix hints (one byte per word, compressed).
 # hebrew.wgz.sizes contains the memory sizes that reading hebrew.wgz will
 #   require (this makes it easier for hspell to preallocate the needed sizes).
-hebrew.wgz hebrew.wgz.prefixes: pmerge $(DICTS) $(GZDICTS)
+hebrew.wgz hebrew.wgz.prefixes: pmerge PrefixBits.pl $(DICTS) $(GZDICTS)
 	(gzip -dc $(GZDICTS); cat $(DICTS)) | ./pmerge -p hebrew.wgz.tmp | ./wzip | gzip -9 > hebrew.wgz
 	-rm -f hebrew.wgz.prefixes
 	gzip -9 < hebrew.wgz.tmp >hebrew.wgz.prefixes
@@ -171,7 +173,7 @@ hebrew.wgz.sizes: hebrew.wgz find_sizes
 	gzip -dc hebrew.wgz | ./find_sizes >hebrew.wgz.sizes
 
 ###################################### optional linginfo stuff ##############
-dolinginfo: linginfo_data hspell
+dolinginfo: linginfo_data $(HSPELL_EXECUTABLE)
 
 # hebrew.wgz contains all the words without any prefix hints like B,L,+ we
 #   previously had. 
@@ -207,7 +209,7 @@ dolinginfo: linginfo_data hspell
 # target in front of the default targets.
 
 linginfo_data: hebrew.wgz.stems
-hebrew.wgz.desc hebrew.wgz.stems hebrew.wgz.lingsizes.tmp dmask.c: binarize-desc.pl pack-desc.pl $(DICTS) $(GZDICTS) find_sizes
+hebrew.wgz.desc hebrew.wgz.stems hebrew.wgz.lingsizes.tmp dmask.c: binarize-desc.pl PrefixBits.pl pack-desc.pl $(DICTS) $(GZDICTS) find_sizes
 #hebrew.wgz hebrew.wgz.prefixes hebrew.wgz.desc hebrew.wgz.stems hebrew.wgz.lingsizes.tmp dmask.c: binarize-desc.pl pack-desc.pl $(DICTS) $(GZDICTS)
 	(gzip -dc $(GZDICTS); cat $(DICTS)) | $(PERL) binarize-desc.pl | \
 		sort -u | $(PERL) pack-desc.pl -p hebrew.wgz.prefixes.tmp \
@@ -245,11 +247,67 @@ dout.nouns.shemp.gz:  shemp.dat wolig.pl
 dout.verbs.gz shemp.dat: woo woo.dat
 	$(PERL) -w woo -d woo.dat | sed "$(SEDCMD)" | gzip -4 > $@
 
+
 ############################################################################
-# The "aspell" target generates the "he_affix.dat" and "he.cwl" files needed
-# for using aspell with Hspell's Hebrew word list.
-# This assumes that Aspell's "word-list-compress" utility is already installed.
-aspell: wunzip he_affix.dat he.cwl
+# The following targets build packages of Hspell's word list in formats
+# required for other spell-checkers like Aspell and Myspell. They are not
+# necessary for building Hspell.
+############################################################################
+
+# The "aspell" target generates the "he_affix.dat" and "he.wl" files needed
+# for using aspell 0.6 with Hspell's Hebrew word list.
+aspell: he_affix.dat he.wl
 mk_he_affix.o: prefixes.c hspell.h
-he_affix.dat he.cwl: mk_he_affix hebrew.wgz hebrew.wgz.prefixes
-	mk_he_affix | word-list-compress c > he.cwl
+he_affix.dat he.wl: mk_he_affix wunzip hebrew.wgz hebrew.wgz.prefixes
+	./mk_he_affix > he.wl
+
+# The "myspell" target generates the "he-IL.dic" and "he-IL.aff" files needed
+# for using Hspell's Hebrew word list in myspell. Myspell is the spell-
+# checking library used in both Mozilla and OpenOffice, and its format is
+# very similar to the uncompressed aspell dictionary format.
+myspell: he-IL.dic he-IL.aff
+he-IL.dic he-IL.aff: he_affix.dat he.wl
+	cat he.wl | wc -l > he-IL.dic
+	cat he.wl >> he-IL.dic
+	echo SET ISO8859-8 > he-IL.aff
+	echo TRY éåäàòçë÷\'\"ùñæãâáøðîèöúôíóêõïì >> he-IL.aff
+	cat he_affix.dat >> he-IL.aff
+
+# The "mozilla" target generates a ".xpi" file, which is basically a zip
+# file containing the dictionaries in Myspell format (similar to the
+# uncompressed aspell dictionary format).
+mozilla: spell-he-IL.xpi
+spell-he-IL.xpi: he-IL.dic he-IL.aff install.js README
+	rm -f README-he-IL.txt spell-he-IL.xpi
+	cp README README-he-IL.txt
+	zip spell-he-IL.xpi install.js README-he-IL.txt he-IL.aff he-IL.dic
+install.js: install.js.pre
+	sed "s/%VERSION%/$(VERSION)/g" < install.js.pre > install.js
+
+# The openoffice target generates a .zip file, which contains the files
+# that need to be installed in OpenOffice's dictionary directory (e.g.,
+# /usr/lib/ooo-1.1/share/dict/ooo/). Additionally, you'll need to add the
+# line "DICT he IL he_IL" to the dictionary.lst file in that directory
+# (for performance, you may want to remove from that list dictionaries in
+# irrelevant languages). The zip itself can be used by DicOOo, OpenOffice's
+# automatic dictionary-fetching macro. But you don't need to compile Hspell
+# yourself if you plan to do that.
+openoffice: he_IL.zip
+he_IL.zip: he_IL.dic he_IL.aff README_he_IL.txt
+	rm -f he_IL.zip
+	zip he_IL.zip he_IL.dic he_IL.aff README_he_IL.txt
+# note: zip dereferences symbolic links, so those are enough.
+he_IL.dic: he-IL.dic
+	ln -s he-IL.dic he_IL.dic
+he_IL.aff: he-IL.aff
+	ln -s he-IL.aff he_IL.aff
+README_he_IL.txt:
+	echo "This Hebrew dictionary in Myspell format was generated automatically from" >README_he_IL.txt
+	echo "data prepared by the Hspell project:" >>README_he_IL.txt
+	echo >>README_he_IL.txt
+	echo "http://ivrix.org.il/projects/spell-checker" >>README_he_IL.txt
+	echo "Hspell version $(VERSION) was used." >>README_he_IL.txt
+	echo >>README_he_IL.txt
+	echo "This dictionary is Copyright (C) 2000-2004, Nadav Har'El and Dan Kenigsberg." >>README_he_IL.txt
+	echo "It is licensed under the GNU General Public License (GPL)." >>README_he_IL.txt
+

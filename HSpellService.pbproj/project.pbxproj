@@ -6,8 +6,6 @@
 	objectVersion = 39;
 	objects = {
 		014CEA4F0018CE4811CA2923 = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -21,8 +19,6 @@
 			name = Development;
 		};
 		014CEA500018CE4811CA2923 = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -106,8 +102,7 @@
 			sourceTree = "<group>";
 		};
 		08FB779EFE84155DC02AAC07 = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Foundation.framework;
 			path = /System/Library/Frameworks/Foundation.framework;
@@ -159,7 +154,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Services";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "-DHAVE_ZLIB";
+				OTHER_CFLAGS = "-DHAVE_ZLIB -DDICTIONARY_BASE=\\\"\\\"";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "Hebrew Spelling";
 				SECTORDER_FLAGS = "";
@@ -354,7 +349,7 @@
 		};
 		3700A54A0666461F00998D4D = {
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "Info-HSpellService.plist";
 			refType = 4;
 			sourceTree = "<group>";
@@ -380,7 +375,7 @@
 				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
 			};
 			buildToolPath = /usr/bin/gnumake;
-			buildWorkingDirectory = "hspell-0.8";
+			buildWorkingDirectory = "hspell-0.9";
 			dependencies = (
 			);
 			isa = PBXLegacyTarget;
@@ -408,7 +403,7 @@
 			);
 			isa = PBXGroup;
 			name = hspell;
-			path = "hspell-0.8";
+			path = "hspell-0.9";
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -466,7 +461,7 @@
 			);
 			isa = PBXGroup;
 			name = hspell;
-			path = "hspell-0.8";
+			path = "hspell-0.9";
 			refType = 4;
 			sourceTree = "<group>";
 		};
