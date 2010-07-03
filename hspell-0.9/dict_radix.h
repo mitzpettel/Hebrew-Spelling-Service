@@ -1,7 +1,10 @@
 /* Copyright (C) 2003 Nadav Har'El and Dan Kenigsberg */
+/* Modified for HSpellService by Mitz Pettel on Fri Dec 2 2005.*/
 
 #ifndef INCLUDED_RADIX_H
 #define INCLUDED_RADIX_H
+
+#include <stdbool.h>
 
 /* The following structure is opaque for the user - its fields can only
    be accessed by calling functions, and it can only be instantiated as
@@ -20,5 +23,9 @@ void print_sizes(struct dict_radix *dict);
 void print_stats(struct dict_radix *dict);
 
 int lookup(const struct dict_radix *dict, const char *word);
+
+typedef void (dfs_callback)(const char *completion, void *context);
+
+void dfs(const struct dict_radix *dict, const char *prefix, unsigned offset, bool avoid_initial_waw, int value_mask, unsigned max_results, dfs_callback *callback, void *context);
 
 #endif /* INCLUDED_RADIX_H */

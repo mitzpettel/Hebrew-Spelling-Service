@@ -1,0 +1,547 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3700A5310666461F00998D4D /* HSSpellChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 37418E58054A795400000005 /* HSSpellChecker.h */; };
+		3700A5320666461F00998D4D /* NSString-MPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CA4799054ACB9B00000005 /* NSString-MPAdditions.h */; };
+		3700A5330666461F00998D4D /* dict_radix.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CA4698054A8B7300000005 /* dict_radix.h */; };
+		3700A5340666461F00998D4D /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CA46A4054A8B7300000005 /* hash.h */; };
+		3700A5350666461F00998D4D /* tclHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CA46B2054A8B7300000005 /* tclHash.h */; };
+		3700A5360666461F00998D4D /* hspell.h in Headers */ = {isa = PBXBuildFile; fileRef = 37204BD60598411600722698 /* hspell.h */; };
+		3700A5380666461F00998D4D /* HSpellService.icns in Resources */ = {isa = PBXBuildFile; fileRef = 373BE08E05503FEA00000005 /* HSpellService.icns */; };
+		3700A5390666461F00998D4D /* hebrew.wgz in Resources */ = {isa = PBXBuildFile; fileRef = 37CA479E054AD21D00000005 /* hebrew.wgz */; };
+		3700A53A0666461F00998D4D /* hebrew.wgz.prefixes in Resources */ = {isa = PBXBuildFile; fileRef = 37CA479F054AD21D00000005 /* hebrew.wgz.prefixes */; };
+		3700A53B0666461F00998D4D /* hebrew.wgz.sizes in Resources */ = {isa = PBXBuildFile; fileRef = 37CA47A0054AD21D00000005 /* hebrew.wgz.sizes */; };
+		3700A53D0666461F00998D4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.m */; };
+		3700A53E0666461F00998D4D /* hspell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CA46A9054A8B7300000005 /* hspell.m */; };
+		3700A53F0666461F00998D4D /* HSSpellChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 37418E59054A795400000005 /* HSSpellChecker.m */; };
+		3700A5400666461F00998D4D /* NSString-MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CA4797054ACB9200000005 /* NSString-MPAdditions.m */; };
+		3700A5410666461F00998D4D /* corlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CA4694054A8B7300000005 /* corlist.c */; };
+		3700A5420666461F00998D4D /* dict_radix.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CA4697054A8B7300000005 /* dict_radix.c */; };
+		3700A5430666461F00998D4D /* gimatria.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CA46A1054A8B7300000005 /* gimatria.c */; };
+		3700A5440666461F00998D4D /* tclHash.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CA46B1054A8B7300000005 /* tclHash.c */; };
+		3700A5450666461F00998D4D /* prefixes.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CA46AE054A8B7300000005 /* prefixes.c */; };
+		3700A5460666461F00998D4D /* libhspell.c in Sources */ = {isa = PBXBuildFile; fileRef = 37204BBA05983FA800722698 /* libhspell.c */; };
+		3700A5480666461F00998D4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		37F3D4E106665EC700DB2A32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F3D4E006665EC700DB2A32 /* libz.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		37AA8ED809407B5D002BF83C /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.c;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXBuildStyle section */
+		014CEA4F0018CE4811CA2923 /* Development */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OPTIMIZATION_CFLAGS = "-O0";
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		014CEA500018CE4811CA2923 /* Deployment */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		3700A54E0666461F00998D4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3700A54D0666461F00998D4D;
+			remoteInfo = "Hspell (Upgraded)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		08FB7796FE84155DC02AAC07 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3700A54A0666461F00998D4D /* Info-HSpellService.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Info-HSpellService.plist"; sourceTree = "<group>"; };
+		3700A54B0666461F00998D4D /* Hebrew Spelling.service */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = "Hebrew Spelling.service"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37204BBA05983FA800722698 /* libhspell.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = libhspell.c; sourceTree = "<group>"; };
+		37204BD60598411600722698 /* hspell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = hspell.h; sourceTree = "<group>"; };
+		373BE08E05503FEA00000005 /* HSpellService.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = HSpellService.icns; sourceTree = "<group>"; };
+		37418E58054A795400000005 /* HSSpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSpellChecker.h; sourceTree = "<group>"; };
+		37418E59054A795400000005 /* HSSpellChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSpellChecker.m; sourceTree = "<group>"; };
+		37CA4694054A8B7300000005 /* corlist.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = corlist.c; sourceTree = "<group>"; };
+		37CA4697054A8B7300000005 /* dict_radix.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = dict_radix.c; sourceTree = "<group>"; };
+		37CA4698054A8B7300000005 /* dict_radix.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = dict_radix.h; sourceTree = "<group>"; };
+		37CA46A1054A8B7300000005 /* gimatria.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = gimatria.c; sourceTree = "<group>"; };
+		37CA46A4054A8B7300000005 /* hash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = hash.h; sourceTree = "<group>"; };
+		37CA46A9054A8B7300000005 /* hspell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = hspell.m; sourceTree = "<group>"; };
+		37CA46AE054A8B7300000005 /* prefixes.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = prefixes.c; sourceTree = "<group>"; };
+		37CA46B1054A8B7300000005 /* tclHash.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = tclHash.c; sourceTree = "<group>"; };
+		37CA46B2054A8B7300000005 /* tclHash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = tclHash.h; sourceTree = "<group>"; };
+		37CA4797054ACB9200000005 /* NSString-MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSString-MPAdditions.m"; sourceTree = "<group>"; };
+		37CA4799054ACB9B00000005 /* NSString-MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "NSString-MPAdditions.h"; sourceTree = "<group>"; };
+		37CA479E054AD21D00000005 /* hebrew.wgz */ = {isa = PBXFileReference; explicitFileType = file; path = hebrew.wgz; sourceTree = "<group>"; };
+		37CA479F054AD21D00000005 /* hebrew.wgz.prefixes */ = {isa = PBXFileReference; lastKnownFileType = file; path = hebrew.wgz.prefixes; sourceTree = "<group>"; };
+		37CA47A0054AD21D00000005 /* hebrew.wgz.sizes */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 30; path = hebrew.wgz.sizes; sourceTree = "<group>"; };
+		37F3D4E006665EC700DB2A32 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3700A5470666461F00998D4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3700A5480666461F00998D4D /* Foundation.framework in Frameworks */,
+				37F3D4E106665EC700DB2A32 /* libz.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* hspell */ = {
+			isa = PBXGroup;
+			children = (
+				08FB7795FE84155DC02AAC07 /* Source */,
+				37CA479D054AD1E800000005 /* Resources */,
+				08FB779DFE84155DC02AAC07 /* Frameworks */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+				3700A54A0666461F00998D4D /* Info-HSpellService.plist */,
+			);
+			name = hspell;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				08FB7796FE84155DC02AAC07 /* main.m */,
+				37418E58054A795400000005 /* HSSpellChecker.h */,
+				37418E59054A795400000005 /* HSSpellChecker.m */,
+				37CA4799054ACB9B00000005 /* NSString-MPAdditions.h */,
+				37CA4797054ACB9200000005 /* NSString-MPAdditions.m */,
+				37CA46A9054A8B7300000005 /* hspell.m */,
+				37CA4692054A8B7300000005 /* hspell */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+			tabWidth = 4;
+		};
+		08FB779DFE84155DC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37F3D4E006665EC700DB2A32 /* libz.dylib */,
+				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3700A54B0666461F00998D4D /* Hebrew Spelling.service */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3700A5540666537A00998D4D /* hspell */ = {
+			isa = PBXGroup;
+			children = (
+				37CA479E054AD21D00000005 /* hebrew.wgz */,
+				37CA479F054AD21D00000005 /* hebrew.wgz.prefixes */,
+				37CA47A0054AD21D00000005 /* hebrew.wgz.sizes */,
+			);
+			name = hspell;
+			path = "hspell-0.9";
+			sourceTree = "<group>";
+		};
+		37CA4692054A8B7300000005 /* hspell */ = {
+			isa = PBXGroup;
+			children = (
+				37204BD60598411600722698 /* hspell.h */,
+				37204BBA05983FA800722698 /* libhspell.c */,
+				37CA4694054A8B7300000005 /* corlist.c */,
+				37CA4697054A8B7300000005 /* dict_radix.c */,
+				37CA4698054A8B7300000005 /* dict_radix.h */,
+				37CA46A1054A8B7300000005 /* gimatria.c */,
+				37CA46A4054A8B7300000005 /* hash.h */,
+				37CA46AE054A8B7300000005 /* prefixes.c */,
+				37CA46B1054A8B7300000005 /* tclHash.c */,
+				37CA46B2054A8B7300000005 /* tclHash.h */,
+			);
+			name = hspell;
+			path = "hspell-0.9";
+			sourceTree = "<group>";
+		};
+		37CA479D054AD1E800000005 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				373BE08E05503FEA00000005 /* HSpellService.icns */,
+				3700A5540666537A00998D4D /* hspell */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3700A5300666461F00998D4D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3700A5310666461F00998D4D /* HSSpellChecker.h in Headers */,
+				3700A5320666461F00998D4D /* NSString-MPAdditions.h in Headers */,
+				3700A5330666461F00998D4D /* dict_radix.h in Headers */,
+				3700A5340666461F00998D4D /* hash.h in Headers */,
+				3700A5350666461F00998D4D /* tclHash.h in Headers */,
+				3700A5360666461F00998D4D /* hspell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXLegacyTarget section */
+		3700A54D0666461F00998D4D /* Hspell */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = $ACTION;
+			buildConfigurationList = 37F3B32E093F22AD00850C09 /* Build configuration list for PBXLegacyTarget "Hspell" */;
+			buildPhases = (
+			);
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Untitled;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			buildToolPath = /usr/bin/gnumake;
+			buildWorkingDirectory = "hspell-0.9";
+			dependencies = (
+			);
+			name = Hspell;
+			passBuildSettingsInEnvironment = 1;
+			productName = Untitled;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		3700A52E0666461F00998D4D /* HSpellService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37F3B332093F22AD00850C09 /* Build configuration list for PBXNativeTarget "HSpellService" */;
+			buildPhases = (
+				3700A5300666461F00998D4D /* Headers */,
+				3700A5370666461F00998D4D /* Resources */,
+				3700A53C0666461F00998D4D /* Sources */,
+				3700A5470666461F00998D4D /* Frameworks */,
+			);
+			buildRules = (
+				37AA8ED809407B5D002BF83C /* PBXBuildRule */,
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-HSpellService.plist";
+				INSTALL_PATH = "$(HOME)/Library/Services";
+				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				OTHER_CFLAGS = (
+					"-DHAVE_ZLIB",
+					"-DDICTIONARY_BASE=\"\"",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "Hebrew Spelling";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = service;
+			};
+			dependencies = (
+				3700A54F0666461F00998D4D /* PBXTargetDependency */,
+			);
+			name = HSpellService;
+			productInstallPath = "$(HOME)/Library/Services";
+			productName = HSpell;
+			productReference = 3700A54B0666461F00998D4D /* Hebrew Spelling.service */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 37F3B336093F22AD00850C09 /* Build configuration list for PBXProject "HSpellService" */;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+			};
+			buildStyles = (
+				014CEA4F0018CE4811CA2923 /* Development */,
+				014CEA500018CE4811CA2923 /* Deployment */,
+			);
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* hspell */;
+			projectDirPath = "";
+			targets = (
+				3700A52E0666461F00998D4D /* HSpellService */,
+				3700A54D0666461F00998D4D /* Hspell */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3700A5370666461F00998D4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3700A5380666461F00998D4D /* HSpellService.icns in Resources */,
+				3700A5390666461F00998D4D /* hebrew.wgz in Resources */,
+				3700A53A0666461F00998D4D /* hebrew.wgz.prefixes in Resources */,
+				3700A53B0666461F00998D4D /* hebrew.wgz.sizes in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3700A53C0666461F00998D4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3700A53D0666461F00998D4D /* main.m in Sources */,
+				3700A53E0666461F00998D4D /* hspell.m in Sources */,
+				3700A53F0666461F00998D4D /* HSSpellChecker.m in Sources */,
+				3700A5400666461F00998D4D /* NSString-MPAdditions.m in Sources */,
+				3700A5410666461F00998D4D /* corlist.c in Sources */,
+				3700A5420666461F00998D4D /* dict_radix.c in Sources */,
+				3700A5430666461F00998D4D /* gimatria.c in Sources */,
+				3700A5440666461F00998D4D /* tclHash.c in Sources */,
+				3700A5450666461F00998D4D /* prefixes.c in Sources */,
+				3700A5460666461F00998D4D /* libhspell.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3700A54F0666461F00998D4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3700A54D0666461F00998D4D /* Hspell */;
+			targetProxy = 3700A54E0666461F00998D4D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		37F3B32F093F22AD00850C09 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Untitled;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		37F3B330093F22AD00850C09 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Untitled;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		37F3B331093F22AD00850C09 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Untitled;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		37F3B333093F22AD00850C09 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "Info-HSpellService.plist";
+				INSTALL_PATH = "$(DSTROOT)/Library/Services";
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = (
+					"-DHAVE_ZLIB",
+					"-DDICTIONARY_BASE=\"\"",
+				);
+				PRODUCT_NAME = "Hebrew Spelling";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = service;
+			};
+			name = Development;
+		};
+		37F3B334093F22AD00850C09 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				INFOPLIST_FILE = "Info-HSpellService.plist";
+				INSTALL_PATH = "$(DSTROOT)/Library/Services";
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				OTHER_CFLAGS = (
+					"-DHAVE_ZLIB",
+					"-DDICTIONARY_BASE=\"\"",
+				);
+				PRODUCT_NAME = "Hebrew Spelling";
+				STRIP_INSTALLED_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = service;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		37F3B335093F22AD00850C09 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Info-HSpellService.plist";
+				INSTALL_PATH = "$(DSTROOT)/Library/Services";
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				OTHER_CFLAGS = (
+					"-DHAVE_ZLIB",
+					"-DDICTIONARY_BASE=\"\"",
+				);
+				PRODUCT_NAME = "Hebrew Spelling";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = service;
+			};
+			name = Default;
+		};
+		37F3B337093F22AD00850C09 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+			};
+			name = Development;
+		};
+		37F3B338093F22AD00850C09 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+			};
+			name = Deployment;
+		};
+		37F3B339093F22AD00850C09 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		37F3B32E093F22AD00850C09 /* Build configuration list for PBXLegacyTarget "Hspell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37F3B32F093F22AD00850C09 /* Development */,
+				37F3B330093F22AD00850C09 /* Deployment */,
+				37F3B331093F22AD00850C09 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		37F3B332093F22AD00850C09 /* Build configuration list for PBXNativeTarget "HSpellService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37F3B333093F22AD00850C09 /* Development */,
+				37F3B334093F22AD00850C09 /* Deployment */,
+				37F3B335093F22AD00850C09 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		37F3B336093F22AD00850C09 /* Build configuration list for PBXProject "HSpellService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37F3B337093F22AD00850C09 /* Development */,
+				37F3B338093F22AD00850C09 /* Deployment */,
+				37F3B339093F22AD00850C09 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

@@ -1,4 +1,5 @@
 /* Copyright (C) 2003-2004 Nadav Har'El and Dan Kenigsberg */
+/* Modified for HSpellService by Mitz Pettel on Fri Dec 2 2005.*/
 
 #include <time.h>
 #include <stdio.h>
@@ -449,6 +450,59 @@ hspell_trycorrect(struct dict_radix *dict, const char *w, struct corlist *cl)
 	/* try to make the word into an abbreviation (add ' at the end) */
 	snprintf(buf,sizeof(buf), "%s'",w);
 	TRYBUF;
+}
+
+typedef struct {
+    hspell_completions_callback callback;
+    void *context;
+} dfs_context;
+
+void dfs_completion_callback(const char *completion, void *context)
+{
+    dfs_context *dc = context;
+    dc->callback(completion, dc->context);
+}
+
+void hspell_completions(struct dict_radix *dict, const char *w, unsigned max, hspell_completions_callback callback, void *context)
+{
+    dfs_context dc = {callback, context};
+    struct prefix_node *pn = prefix_tree;
+    unsigned preflen = 0;
+    do {
+        if (preflen && w[preflen] == 'å' && w[preflen - 1] != 'å') {
+            // Waw right after the prefix (which is not a single waw); this waw cannot be part of
+            // a longer prefix, since waw only occurs as the first letter in prefixes.
+            // Do this and we're done.
+            char next = w[preflen + 1];
+            if (next && next != 'å')
+                return; // All prefixes require waw repetition. FIXME: Except the "waw" prefix!
+            char tmpBuf[50];
+            const char *buf;
+            if (!next) {
+                int l = strlen(w);
+                if (l > 48)
+                    return;
+                strcpy(tmpBuf, w);
+                tmpBuf[l] = 'å';
+                tmpBuf[l + 1] = 0;
+                buf = tmpBuf;
+            } else
+                buf = w;
+            // Waw waw right after the prefix
+            // 1. Could be the beginnig of a word that begins with waw waw (e.g. voluntary)
+            dfs(dict, buf, preflen, false, pn->mask, max, dfs_completion_callback, &dc);
+            // 2. Three waws? Only if it was the above case. Waw repetition does not produce 3 waws.
+            if (buf[preflen + 2] == 'å')
+                return;
+            // 3. This is waw repitition. Swallow the repeated waw and don't allow double waw.
+            dfs(dict, buf, preflen + 1, true, pn->mask, max, dfs_completion_callback, &dc);
+            return;
+        }
+        dfs(dict, w, preflen, false, pn->mask, max, dfs_completion_callback, &dc);
+    } while (w[preflen] && (pn = pn->next[w[preflen++] - 'à']));
+    // now make up prefixes...
+    // practically, it doesn't matter that we don't, since there will always be plenty of alef completions
+    // and the first prefix we can make up is a bet
 }
 
 /* hspell_init() reads the dictionary and initializes the necessary data

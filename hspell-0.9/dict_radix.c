@@ -1,9 +1,11 @@
 /* Copyright (C) 2003-2004 Nadav Har'El and Dan Kenigsberg */
+/* Modified for HSpellService by Mitz Pettel on Fri Dec 2 2005.*/
 
 #include <stdio.h>
 #include <sys/types.h>
 #include <stdlib.h>
 #include <string.h>
+#include "dict_radix.h"
 
 /* This is for declaring the uint32_t type, a type holding a 32-bit unsigned
    integer. It exists on Linux and on fairly modern Solaris, but
@@ -106,6 +108,8 @@
 #define SMALL_NODE_CHILDREN 1
 #define MEDIUM_NODE_CHILDREN 4
 #endif
+
+#define DFS_MAX_LENGTH 30
 
 struct node_index {
 	/* if most-significant bit of val is on, it's an index. Otherwise,
@@ -627,6 +631,174 @@ print_sizes(struct dict_radix *dict)
 	printf("%d %d %d\n", dict->nnodes_small, dict->nnodes_medium,
 		dict->nnodes);
 }
+
+void dfs(const struct dict_radix *dict, const char *prefix, unsigned offset, bool avoid_initial_waw, int value_mask, unsigned max_results, dfs_callback *callback, void *context)
+{
+    struct node_index current = dict->head;
+    char result[DFS_MAX_LENGTH + 1];
+    int bottom;
+    
+    if (offset > DFS_MAX_LENGTH)
+        return;
+    
+    for (bottom = 0; bottom < offset; bottom++)
+        result[bottom] = *(prefix++);
+    if (bottom > DFS_MAX_LENGTH)
+        return;
+    
+    // walk the prefix
+    while (*prefix) {
+        result[bottom++] = *prefix;
+        uint32_t highbits = current.val_or_index & HIGHBITS;
+
+        if (bottom > DFS_MAX_LENGTH)
+            return;
+
+        switch (highbits) {
+            case HIGHBITS_VALUE:
+                return;
+            case HIGHBITS_SMALL:
+                {
+                    struct node_small *n = &dict->nodes_small[current.val_or_index & VALUEMASK];
+                    if (n->chars[0] == *prefix)
+                        current = n->children[0];
+                    else if (n->chars[1] == *prefix)
+                        current = n->children[1];
+                    else
+                        return;
+                }
+                break;
+            case HIGHBITS_MEDIUM:
+                {
+                    struct node_medium *n = &dict->nodes_medium[current.val_or_index & VALUEMASK];
+                    register char c = *prefix;
+                    register char *cs = n->chars;
+                    if (*(cs++) == c)
+                        current=n->children[0];
+                    else if (*(cs++) == c)
+                        current=n->children[1];
+                    else if (*(cs++) == c)
+                        current=n->children[2];
+                    else if (*(cs++) == c)
+                        current=n->children[3];
+                    else if (*(cs++) == c)
+                        current=n->children[4];
+                    else if (*(cs++) == c)
+                        current=n->children[5];
+                    else if (*(cs++) == c)
+                        current=n->children[6];
+                    else if (*(cs++) == c)
+                        current=n->children[7];
+                    else
+                        return;
+                }
+                break;
+            case HIGHBITS_FULL:
+                {
+                    register int ind;
+                    register unsigned char c = *prefix;
+                    if (c >= (unsigned char)'à' && c < (unsigned char)'à'+27)
+                        ind = c - (unsigned char)'à' + 2;
+                    else if (c == '"')
+                        ind = 0;
+                    else if (c == '\'')
+                        ind = 1;
+                    else
+                        return;
+                    current = dict->nodes[current.val_or_index & VALUEMASK].children[ind];
+                }
+                break;
+        }
+        prefix++;
+    }
+
+    struct node_index nodes[DFS_MAX_LENGTH];
+    uint32_t highbits = current.val_or_index & HIGHBITS;
+    int indices[DFS_MAX_LENGTH];
+    int ind = -1;
+    unsigned depth = bottom;
+    unsigned res_number = 0;
+
+    while (1) {
+        if (ind == -1) {
+            int value;
+            switch(highbits) {
+                case HIGHBITS_VALUE:
+                    value = current.val_or_index & VALUEMASK;
+                    break;
+                case HIGHBITS_SMALL:
+                    value = dict->nodes_small[current.val_or_index & VALUEMASK].value;
+                    break;
+                case HIGHBITS_MEDIUM:
+                    value = dict->nodes_medium[current.val_or_index & VALUEMASK].value;
+                    break;
+                case HIGHBITS_FULL:
+                    value = dict->nodes[current.val_or_index & VALUEMASK].value;
+                    break;
+            }
+            if (value & value_mask) {
+                result[depth] = 0;
+                callback(result, context);
+                if (++res_number >= max_results)
+                    return;
+            }
+        }
+        ind++;
+        if (depth >= DFS_MAX_LENGTH ||
+            highbits == HIGHBITS_VALUE ||
+            highbits == HIGHBITS_SMALL & ind == 2 ||
+            highbits == HIGHBITS_MEDIUM & ind == 8 ||
+            highbits == HIGHBITS_FULL & ind == NUM_LETTERS) {
+            if (depth == bottom)
+                return;
+            depth--;
+            ind = indices[depth];
+            if (ind == -1) {
+                // Cookie from repeating the waw
+                depth--;
+                ind = indices[depth];
+            }
+            current = nodes[depth];
+            highbits = current.val_or_index & HIGHBITS;
+        } else {
+            char next_char;
+            struct node_index next_node;
+            switch(highbits) {
+                case HIGHBITS_SMALL:
+                    {
+                        struct node_small *n = &dict->nodes_small[current.val_or_index & VALUEMASK];
+                        next_char = n->chars[ind];
+                        next_node = n->children[ind];
+                    }
+                    break;
+                case HIGHBITS_MEDIUM:
+                    {
+                        struct node_medium *n = &dict->nodes_medium[current.val_or_index & VALUEMASK];
+                        next_char = n->chars[ind];
+                        next_node = n->children[ind];
+                    }
+                    break;
+                case HIGHBITS_FULL:
+                    {
+                        struct node *n = &dict->nodes[current.val_or_index & VALUEMASK];
+                        next_char = letter_to_char(ind);
+                        next_node = n->children[ind];
+                    }
+                    break;
+            }
+            if (!(avoid_initial_waw && next_char == 'å' && depth == offset + 1)) {
+                indices[depth] = ind;
+                nodes[depth] = current;
+                result[depth] = next_char;
+                current = next_node;
+                highbits = current.val_or_index & HIGHBITS;
+                ind = -1;
+                depth++;
+            }
+        }
+    }
+}
+
 
 int
 lookup(const struct dict_radix *dict, const char *word)

@@ -1,4 +1,5 @@
 /* Copyright (C) 2003-2004 Nadav Har'El and Dan Kenigsberg */
+/* Modified for HSpellService by Mitz Pettel on Fri Dec 2 2005.*/
 
 /* This header file defines the Hspell Hebrew spellchecking API in C, as
    implemented by the libhspell.a library.
@@ -24,8 +25,9 @@ struct corlist;
 /* flags for hspell_init: */
 #define HSPELL_OPT_DEFAULT 0
 #define HSPELL_OPT_HE_SHEELA 1      /* flag to accept He Ha-she'ela */
-#define HSPELL_OPT_LINGUISTICS  2   /* initialize morphological analyzer,
-				       not just spell-checker */
+#define HSPELL_OPT_LINGUISTICS  2   /* initialize morphological analyzer, not just spell-checker */
+
+typedef void (*hspell_completions_callback)(const char *completion, void *context);
 
 int hspell_init(struct dict_radix **dictp, int flags);
 
@@ -34,6 +36,8 @@ int hspell_check_word(struct dict_radix *dict,
 void hspell_trycorrect(struct dict_radix *dict,
 		       const char *w, struct corlist *cl);
 int hspell_is_canonic_gimatria(const char *w);
+void hspell_completions(struct dict_radix *dict, const char *w,
+                unsigned max, hspell_completions_callback callback, void *context);
 
 void hspell_uninit(struct dict_radix *dict);
 

@@ -3,7 +3,7 @@
  *  HSPellService
  *
  *  Created by Mitz Pettel on Fri Oct 25 2003.
- *  Copyright (c) 2003 Mitz Pettel <source@mitzpettel.com>. All rights reserved.
+ *  Copyright (c) 2003-2005 Mitz Pettel <source@mitzpettel.com>. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 
 NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCount, BOOL countOnly );
 NSArray *trycorrect( NSString *word );
+NSArray *completions(NSString *word);
 
 @implementation HSSpellChecker
 
@@ -44,6 +45,11 @@ NSArray *trycorrect( NSString *word );
 - (NSArray *)spellServer:(NSSpellServer *)sender suggestGuessesForWord:(NSString *)word inLanguage:(NSString *)language
 {
     return trycorrect(word);
+}
+
+- (NSArray *)spellServer:(NSSpellServer *)sender suggestCompletionsForPartialWordRange:(NSRange)range inString:(NSString *)string language:(NSString *)language
+{
+    return completions([string substringWithRange:range]);
 }
 
 @end

@@ -1,6 +1,7 @@
 /* Copyright (C) 2003 Nadav Har'El and Dan Kenigsberg 		*/
 /* Modified for HSpellService by Mitz Pettel on Fri Mar 15 2003.*/
 /* and on Tue Dec 23 2003.*/
+/* and on Fri Dec 2 2005.*/
 
 #import <Foundation/Foundation.h>
 #import "NSString-MPAdditions.h"
@@ -17,15 +18,25 @@
 #include "linginfo.h"
 #endif
 
+#define MAX_COMPLETIONS 100
+
 const char *dictionary_base;
 
 #define VERSION_IDENTIFICATION ("@(#) International Ispell Version 3.1.20 " \
 			       "(but really Hspell/C %d.%d%s)\n")
 
-#define ishebrew(c) ((c)>=(int)(unsigned char)'à' && (c)<=(int)(unsigned char)'ú')
 #define isUhebrew(c) ((c)>=0x05d0 && (c)<=0x05ea)
 
 static struct dict_radix *dict = NULL;
+
+void initialize()
+{
+	if (!dict) {
+		dictionary_base = [[NSFileManager defaultManager] fileSystemRepresentationWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"hebrew.wgz"]];
+		hspell_set_dictionary_path(dictionary_base);
+		hspell_init(&dict, 0);
+	}
+}
 
 NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCount, BOOL countOnly )
 {
@@ -42,13 +53,8 @@ NSRange hspell( NSSpellServer *spellServer, NSString *stringToCheck, int *wordCo
 	range.location = 0;
 	range.length = 0;
 
-	if ( dict==NULL )
-	{
-		dictionary_base = [[NSFileManager defaultManager] fileSystemRepresentationWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"hebrew.wgz"]];
-		hspell_set_dictionary_path( dictionary_base );
-		hspell_init( &dict, 0 );
-	}
-
+    initialize();
+    
 	for( offset = 0; offset<=textLength; offset++ )
         {
 		uc = ( offset==textLength ? 0 : [stringToCheck characterAtIndex:offset] );
@@ -126,10 +132,31 @@ NSArray *trycorrect( NSString *word )
 	int i;
 	
 	corlist_init( &cl );
+
+    initialize();
+
 	hspell_trycorrect( dict, w, &cl );
 	
 	result = [NSMutableArray arrayWithCapacity:cl.n];
 	for ( i = 0; i<cl.n; i++ )
 		[result addObject:[NSString stringWithCString:cl.correction[i] encoding:kCFStringEncodingISOLatinHebrew]];
+    corlist_free(&cl);
 	return result;
+}
+
+void foundCompletion(const char *completion, void *context)
+{
+    [(NSMutableArray *)context addObject:[NSString stringWithCString:completion encoding:kCFStringEncodingISOLatinHebrew]];
+}
+
+NSArray *completions(NSString *word)
+{
+	const char		*w = [word cStringWithEncoding:kCFStringEncodingISOLatinHebrew];
+	NSMutableArray	*result = [NSMutableArray arrayWithCapacity:MAX_COMPLETIONS];
+	
+    initialize();
+
+	hspell_completions(dict, w, MAX_COMPLETIONS, foundCompletion, result);
+	
+    return [result sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }

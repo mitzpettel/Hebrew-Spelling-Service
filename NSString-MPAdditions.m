@@ -70,7 +70,7 @@
     data = [NSMutableData dataWithLength:length+1];
     bytes = [data mutableBytes];
     // do the actual conversion
-    CFStringGetBytes((CFStringRef)self, CFRangeMake(0, [self length]), encoding, '?', NO, bytes, length, &length);
+    CFStringGetBytes((CFStringRef)self, CFRangeMake(0, [self length]), encoding, '?', NO, (UInt8 *)bytes, length, &length);
     bytes[length] = 0;
     return bytes;
 }
