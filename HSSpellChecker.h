@@ -22,6 +22,11 @@
  */
 #import <Foundation/Foundation.h>
 
+#define LANG_HEBREW				@"Hebrew"
+#define VENDOR_HSPELL			@"Hspell"
+
+#define HSLogSettingName		@"HSLog"
+#define HSSuicideSettingName	@"exitOnWrongLanguage"
 
 @interface HSSpellChecker : NSObject {
 

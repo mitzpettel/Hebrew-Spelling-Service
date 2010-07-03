@@ -27,15 +27,29 @@ int main(int argc, const char * argv[])
 {
     NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
     NSSpellServer	*spellServer = [[NSSpellServer alloc] init];
+	
+	[[NSUserDefaults standardUserDefaults]
+		registerDefaults:[NSDictionary
+			dictionaryWithObjectsAndKeys:
+				[NSNumber numberWithBool:YES],  HSSuicideSettingName,
+				[NSNumber numberWithBool:NO],  HSLogSettingName,
+				nil
+		]
+	];
     
-    if ( [spellServer registerLanguage:@"Hebrew" byVendor:@"Hspell"] )
+    if ( [spellServer registerLanguage:LANG_HEBREW byVendor:VENDOR_HSPELL] )
     {
         [spellServer setDelegate:[HSSpellChecker new]];
+		
+		if ( [[NSUserDefaults standardUserDefaults] boolForKey:HSLogSettingName] )
+			NSLog( @"Starting spell server" );
+			
         [spellServer run];
-        NSLog( @"Unexpected death of hspell" );
+		
+        NSLog( @"Terminated unexpectedly" );
     }
     else
-        NSLog( @"Unable to check in hspell" );
+        NSLog( @"Couldn't register" );
 
     [pool release];
     return 0;

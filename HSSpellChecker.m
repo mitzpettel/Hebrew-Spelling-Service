@@ -29,6 +29,15 @@ NSArray *trycorrect( NSString *word );
 
 - (NSRange)spellServer:(NSSpellServer *)sender findMisspelledWordInString:(NSString *)stringToCheck language:(NSString *)language wordCount:(int *)wordCount countOnly:(BOOL)countOnly
 {
+	if ( ![language isEqualToString:LANG_HEBREW] &&
+			[[NSUserDefaults standardUserDefaults] boolForKey:HSSuicideSettingName] )
+	{
+		// Due to a problem in AppKit we might get called to do somebody else's job. If we
+		// exit immediately, they'll get called again instead of us.
+		if ( [[NSUserDefaults standardUserDefaults] boolForKey:HSLogSettingName] )
+			NSLog( @"Invoked with %@ instead of %@. Exiting.", language, LANG_HEBREW );
+		exit( EXIT_FAILURE );
+	}
     return hspell( sender, stringToCheck, wordCount, countOnly );
 }
 

@@ -3,7 +3,10 @@
  *  Icy Juice
  *
  *  Created by Mitz Pettel on Fri Mar 15 2002.
- *  Copyright (c) 2001 Mitz Pettel <source@mitzpettel.com>. All rights reserved.
+ *  Copyright (c) 2001-2003 Mitz Pettel <source@mitzpettel.com>. All rights reserved.
+ *
+ *  Modifications suggested by Nir Soffer
+ *  	(see <456BF303-0BAF-11D8-851B-000502B6C537@freeshell.org>)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,12 +44,12 @@
     {
         matchRange = [result rangeOfString:searchString options:mask range:searchRange];
         if (matchRange.location==NSNotFound)
-            return result;
+            break;
         [result replaceCharactersInRange:matchRange withString:replacement];
-        searchRange.location += [replacement length];
+        searchRange.location = matchRange.location+[replacement length];
         searchRange.length = [result length]-searchRange.location;
     }
-    return result;
+    return [result autorelease];
 }
 
 + (NSString *)stringWithCString:(const char *)bytes encoding:(NSStringEncoding)encoding
@@ -59,7 +62,6 @@
 - (const char *)cStringWithEncoding:(NSStringEncoding)encoding
 {
     CFIndex length;
-    char *messageCString;
     NSMutableData *data;
     char *bytes;
     // get the required length
@@ -67,7 +69,6 @@
     // allocate a buffer large enough
     data = [NSMutableData dataWithLength:length+1];
     bytes = [data mutableBytes];
-    messageCString = malloc(length+1);
     // do the actual conversion
     CFStringGetBytes((CFStringRef)self, CFRangeMake(0, [self length]), encoding, '?', NO, bytes, length, &length);
     bytes[length] = 0;
@@ -78,6 +79,20 @@
 {
     NSFileManager *manager = [NSFileManager defaultManager];
     return [[manager displayNameAtPath:self] caseInsensitiveCompare:[manager displayNameAtPath:string]];
+}
+
++ (NSString *)stringWithByteSize:(unsigned int)size
+{
+    return ( size==0 ?
+        @""
+        : ( size<1024 ?
+            [NSString stringWithFormat:NSLocalizedString( @"%d bytes", @"" ), size]
+            : ( size<1024*1024 ? 
+                [NSString stringWithFormat:NSLocalizedString( @"%d KB", @"" ), size/1024]
+                : [NSString stringWithFormat:NSLocalizedString( @"%d MB", @"" ), size/1024/1024]
+            )
+        )
+    );
 }
 
 @end
